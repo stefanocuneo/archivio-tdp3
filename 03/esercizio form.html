@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Form</title>
+
+    <meta charset="UTF-8">
+
+</head>
+
+<body>
+
+    <form name="registrazione" action="recuperadati" method="post" onSubmit="return controlla()">
+
+        <label for="user">Nome:</label><br>
+
+        <input type="text" id="user" name="nome" value=""><br>
+
+        <br>
+
+        <label for="co">Cognome:</label><br>
+
+        <input type="text" id="co" name="cognome" value=""><br>
+
+        <br>
+
+        <label for="email">E-mail:</label><br>
+
+        <input type="text" id="email" name="email"><br><br>
+
+        <label for="Stato">Pese di Destinazione</label><br>
+
+        <select name="categoriautente" id="stato">
+
+            <option value="" selected>selezionare</option>
+
+            <option value="studente">Iraq</option>
+
+            <option value="docente">Afghanistan</option>
+
+            <option value="Altro">Korea del Nord</option>
+
+        </select>
+
+        <br>
+
+        <br>
+
+        <label for="hobby">Tipologia richiesta:</label><br>
+
+        <select name="tiporichiesta" id="hobby">
+
+            <option value="" selected>selezionare</option>
+
+            <option value="malfunzionamento">Biglietto Prima classe (costa troppo)</option>
+
+            <option value="informazione">Camminata a piedi</option>
+
+            <option value="Suggerimento">Biciclettata</option>
+
+            <option value="Altro">Teletrasporto</option>
+
+        </select><br>
+
+        <br>
+
+        <label for="w3mission">Inserisci qualche richiesta particolare</label>
+
+        <textarea id="w3mission" name="commenti" rows="10" cols="50">
+
+    </textarea><br>
+
+        <br>
+
+        <input type="Submit" value="Invia">
+
+        <input type="reset" value="Cancella">
+
+    </form>
+
+    <script>
+
+        function controlla() {
+
+            let message = "";
+
+            // Test nome
+
+            if (document.registrazione.nome.value.length == 0) {
+
+                message = message + "Per favore, compilare il campo \"Nome\".\n";
+
+            }
+
+            // Test cognome
+
+            if (document.registrazione.cognome.value.length == 0) {
+
+                message = message + "Per favore, compilare il campo \"Cognome\".\n";
+
+            }
+
+            // Test e-mail
+
+            if (document.registrazione.email.value.indexOf('@', 0) == -1) {
+
+                message += "Per favore, compilare il campo \"E-mail\" con un indirizzo valido.\n";
+
+            }
+
+            // Test categoria utente
+
+            var region = document.registrazione.categoriautente.selectedIndex;
+
+            if (document.registrazione.categoriautente.options[region].value == "") {
+
+                message += "Per favore, selezionare una \"Pese di Destinazione\".\n";
+
+            }
+
+            // Test tipo richiesta
+
+            region = document.registrazione.tiporichiesta.selectedIndex;
+
+            if (document.registrazione.tiporichiesta.options[region].value == "") {
+
+                message += "Per favore, selezionare una \"Tipologia di Viaggio\".\n";
+
+            }
+
+            // Test commenti
+
+            if (document.registrazione.commenti.value.length == 0) {
+
+                message += "Per favore, compilare il campo \"Tipologia di richiesta\".\n";
+
+            }
+
+            // Test per la presenza di errori
+
+            if (message.length > 0) {
+
+                // message =
+
+                //     "_______________________________________________________\n\n" +
+
+                //     "La richiesta non è stata inviata in quanto alcuni campi\n" +
+
+                //     "del form non sono stati compilati.\n" +
+
+                //     "_________________________________________________________\n" +
+
+                //     "\n" + message;
+
+                // alert(message);
+                document.body.innerHTML += message;
+
+                return false;
+
+            }
+
+            else {
+
+                return true;
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
